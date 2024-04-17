@@ -1,0 +1,171 @@
+@import "../../../../public/assets/css/variable/variable";
+
+.profile_management {
+  .white_box {
+    .title_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 25px;
+      .box_title {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 26px;
+        color: $bodycolor;
+        margin: 0;
+      }
+      .btn_edit {
+        padding: 0;
+      }
+    }
+    &.personal_details {
+      .top_content {
+        display: flex;
+        align-items: center;
+        margin: 0 0 35px;
+        .profile_img {
+          margin-right: 20px;
+          img {
+            border-radius: 50%;
+            width: 85px;
+            min-width: 85px;
+            height: 85px;
+            line-height: 85px;
+          }
+        }
+        .profile_content {
+          .profile_title {
+            font-weight: 700;
+            font-size: $font_ex_large;
+            line-height: 20px;
+            color: $bodycolor;
+            margin: 0 0 10px;
+          }
+          .profile_desc {
+            font-weight: 500;
+            line-height: 22px;
+            width: 65%;
+          }
+        }
+      }
+    }
+    &.nric {
+      .nric_no {
+        background: #f4f6f5;
+        border-radius: 10px;
+        padding: 14px 20px;
+        margin: 0 0 15px;
+        font-size: $font_medium;
+        font-weight: 500;
+      }
+      .nric_doc {
+        background: #fbfbfb;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
+        padding: 5px;
+      }
+    }
+    &.bank_details {
+      .title_wrapper {
+        margin: 0 0 10px;
+      }
+      .acc_no {
+        .acc_no_inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #f4f6f5;
+          border-radius: 10px;
+          padding: 10px 15px;
+          .left_part {
+            display: flex;
+            align-items: center;
+            .icon {
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+    }
+    &.add_sign {
+      .title_wrapper {
+        margin: 0 0 10px;
+      }
+      .signature {
+        background: #f4f6f5;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
+        padding: 8px 15px;
+        text-align: center;
+      }
+    }
+    &.change_pass {
+      .primary_btn {
+        justify-content: flex-end;
+        margin-top: 15px;
+        .btn {
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $desktop) {
+  .profile_management {
+    .white_box {
+      &.personal_details {
+        .top_content {
+          align-items: flex-start;
+          .profile_content {
+            .profile_desc {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $large_phone) {
+  .profile_management {
+    .white_box {
+      .title_wrapper {
+        .box_title {
+          font-size: 20px;
+          line-height: 24px;
+        }
+      }
+      &.personal_details {
+        .top_content {
+          .profile_content {
+            .profile_title {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $small_phone) {
+  .profile_management {
+    .white_box {
+      &.personal_details {
+        .top_content {
+          flex-direction: column;
+          margin: 0 0 20px;
+          .profile_img {
+            margin: 0 0 15px;
+            img {
+              width: 70px;
+              min-width: 70px;
+              height: 70px;
+              line-height: 70px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

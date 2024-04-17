@@ -1,0 +1,79 @@
+@import "../../../../public/assets/css/variable/variable";
+
+.sidebar_main {
+  .offcanvas {
+    border: none;
+    background: $white_color;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    .offcanvas_header {
+      justify-content: center;
+      padding: 20px 20px 50px;
+    }
+    .offcanvas_body {
+      .inner_sidebar {
+        .menu_list {
+          ul {
+            padding: 0 20px;
+            margin: 0;
+            list-style: none;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: calc(100vh - 140px);
+            li {
+              margin: 0 0 20px;
+              .menu_list_block {
+                border-radius: 18px;
+                background-color: rgba(55, 27, 43, 0.1);
+                width: 71px;
+                height: 71px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                svg {
+                  fill: #91828b;
+                }
+                &.active,
+                &:hover {
+                  background: rgba(201, 146, 174, 0.17);
+                  svg {
+                    fill: #c791ad;
+                  }
+                }
+              }
+            }
+            &::-webkit-scrollbar {
+              width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+              background-color: #b5c8d8;
+              border-radius: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $medium_iphone) {
+  .sidebar_main {
+    .offcanvas {
+      .offcanvas_body {
+        .inner_sidebar {
+          .menu_list {
+            ul {
+              li {
+                margin: 0 0 20px;
+                .menu_list_block {
+                  width: 55px;
+                  height: 55px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,230 @@
+// @import '../variable/breakpoints';
+
+@media screen and (min-width:$medium_iphone_up) {
+    .MuiModal-root .modal_block{
+        width: 550px;
+    }
+    .MuiModal-root .modal_block.delivery_modal{
+        width: 511px;
+    }
+    .MuiModal-root .modal_block.setting_modal{
+        width: 511px;
+    }
+    .modal-xl{
+        max-width:550px;
+    }
+}
+@media screen and (min-width:$tablet_up) {
+    .MuiModal-root .modal_block{
+        width: 586px;
+    }
+    .modal-xl{
+        max-width:730px;
+    }
+    .modal-lg{
+        max-width:730px;
+    }
+    
+}
+@media screen and (min-width:$desktop_pro_up) {
+    .container{
+        padding: 0;
+    }
+    .MuiModal-root .modal_block.referral{
+        width: 895px;
+    }
+    .MuiModal-root .modal_block.consult_details{
+        width: 900px;
+    }
+    .modal-xl{
+        max-width:960px;
+    }
+    .left_panel {
+        width: 45%;
+    }
+    .right_panel {
+        width: 55%;
+    }
+}
+@media screen and (min-width:$desktop_up) {
+    .modal-xl{
+        max-width:1160px;
+    }
+}
+@media screen and (min-width:$desktop_medium_up) {
+    .container{
+        max-width: 1240px;
+    }
+}
+@media screen and (min-width:$desktop_large_up) {
+    .container{
+        max-width: 1320px;
+    }
+    .modal-xl{
+        max-width:1360px;
+    }
+}
+
+@media screen and (max-width:1920px) {
+    .table_inner{
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        &::-webkit-scrollbar{
+            height: 3px; 
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: #B5C8D8; 
+            border-radius: 20px;
+        }
+    }
+}
+@media screen and (max-width:$desktop_large) {
+    .MuiModal-root .modal_block.referral .modal_content .letter_section .section.middle_section{
+        height: 160px;
+        overflow-x: scroll;
+    }
+}
+@media screen and (max-width:$desktop) {
+
+}
+@media screen and (max-width:$tablet) {
+    .container{
+        max-width: none;
+        width: auto;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 0;
+    }
+    .sidebar_main  .offcanvas.offcanvas-start{
+        left: 0;
+    }
+
+
+
+    .userauth .main_title{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .tabs .MuiTabs-root button{
+        font-size: 16px;
+        min-width: 200px;
+    }
+
+
+
+    .userauth .userauth_inner .auth_title{
+        font-size: 28px;
+        line-height: 40px;
+    }
+    .userauth.consultone .userauth_inner .form_wrapper{
+        width: 650px;
+    }
+    .MuiModal-root .modal_block.consult_details .modal_content form{
+        height: 450px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}
+@media screen and (max-width:$large_phone) {
+    h2.main_page_title{
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .userauth.consultone .userauth_inner .form_wrapper{
+        width: 100%;
+    }
+    .userauth.delivery_address .userauth_inner .form_wrapper {
+        width: 550px;
+    }
+    .userauth .top_bar{
+        flex-direction: column;
+    }
+    .userauth .top_bar .left_part{
+        margin: 0 0 12px;
+    }
+    .MuiModal-root .modal_block.referral .modal_content form .primary_btn .btn{
+        min-width: auto;
+        width: 100%;    
+    }
+    .MuiModal-root .modal_block.referral .modal_content form .form_title{
+        font-size: 16px;
+        line-height: 20px;
+    }   
+}
+@media screen and (max-width:$medium_iphone) {
+    .MuiModal-root .modal_block{
+        width: 95%;
+    }
+
+    .userauth .userauth_inner .form_wrapper{
+        width: 100%;
+    }
+    .userauth .userauth_inner .auth_title {
+        font-size: 20px;
+        line-height: 26px;
+        margin: 0 0 30px;
+    }
+    .sidebar_main .offcanvas.offcanvas-start{
+        width: 100px;
+    }
+    .userauth.delivery_address .userauth_inner .form_wrapper {
+        width: 100%;
+    }
+    .userauth.consultone .userauth_inner .form_wrapper form .btn_next{
+        width: 100%;
+    }
+}
+@media screen and (max-width:$medium_phone) {
+
+    .MuiModal-root .modal_block .modal_content .primary_btn .btn{
+        width: 100%;
+        margin: 10px 0 0;
+    }
+    .main_content .main_block .top_bar .right_part .right_part_inner{
+        flex-direction: column;
+    }
+    .main_content .main_block .top_bar .right_part .right_part_inner .add_kit {
+        margin: 15px 0 0;
+    }
+    .primary_btn .btn{
+        width: 100%;
+        margin-top: 10px;
+    }
+    .primary_btn .btn:last-child{
+        margin-left: 0;
+    }
+    .userauth.delivery_address .userauth_inner .form_wrapper .primary_btn .btn{
+        min-width: auto;
+        width: 100%;
+    }
+    .search_bar .input-group input.form-control{
+        width: 100%;
+    }
+    .main_wrapper .userauth{
+        padding: 60px 15px 30px;
+    }
+    .userauth.payment_method .form_wrapper .payment_item{
+        padding: 20px;
+    }
+    .userauth.payment_method .form_wrapper .payment_item .payment_item_inner{
+        padding: 25px 15px;
+    }
+
+}
+@media screen and (max-width:$small_phone) {
+
+    .tabs .MuiTabs-root .MuiButtonBase-root{
+        min-width: 150px;
+    }
+    .back_link {
+        margin-top: 20px;
+    }
+    .main_content .main_block{
+        margin: 20px 0;
+    }
+}

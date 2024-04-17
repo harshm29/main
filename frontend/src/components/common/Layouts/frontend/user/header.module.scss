@@ -1,0 +1,67 @@
+@import "../../../../../../public/assets/css/variable/variable";
+
+.header {
+  padding: 15px 40px;
+  background-color: $white_color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+  .header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .left_part {
+      display: flex;
+      align-items: center;
+      .btn_close {
+        padding: 0;
+        border: none;
+        width: 28px;
+        height: 26px;
+        min-width: 28px;
+        margin: 0 20px 0 0;
+        background-color: transparent;
+      }
+    }
+    .center_part {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      bottom: -70px;
+      top: auto;
+      .login_auth_img {
+        img {
+          background: $white_color;
+          border: 1px solid rgba(0, 0, 0, 0.19);
+          border-radius: 50%;
+          padding: 7px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $medium_iphone) {
+  .header {
+    padding: 15px;
+    .header_inner {
+      .left_part {
+        .header_logo {
+          img {
+            width: 50px;
+            height: 59px;
+          }
+        }
+      }
+      .center_part {
+        bottom: -55px;
+        .login_auth_img {
+          img {
+            width: 90px;
+            height: 90px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import "../../../../public/assets/css/variable/variable";
+
+.main_block {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  .main_section {
+    margin-left: 140px;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .main_block .sidebar_section {
+    width: auto;
+  }
+  .main_block .main_section {
+    margin-left: 0;
+    width: 100%;
+  }
+}

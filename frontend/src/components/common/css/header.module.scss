@@ -1,0 +1,122 @@
+@import "../../../../public/assets/css/variable/variable";
+
+.header {
+  padding: 20px 40px;
+  background-color: $white_color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // margin-left: 290px;
+  .header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .left_part {
+      display: flex;
+      align-items: center;
+      .btn_close {
+        padding: 0;
+        border: none;
+        width: 24px;
+        height: 22px;
+        min-width: 24px;
+        margin: 0 20px 0 0;
+        background-color: transparent;
+      }
+    }
+    .center_part {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      bottom: -70px;
+      top: auto;
+      z-index: 1;
+      .login_auth_img {
+        img {
+          background: $white_color;
+          border: 1px solid rgba(0, 0, 0, 0.19);
+          border-radius: 50%;
+          padding: 7px;
+        }
+      }
+    }
+    .right_part {
+      display: flex;
+      align-items: center;
+      .common_content {
+        margin: 0 12px;
+        cursor: pointer;
+        &.restart_btn {
+          background-color: $white_color;
+          padding: 0;
+          border: none;
+        }
+        &.user {
+          margin-right: 0;
+          .profile_img {
+            img {
+              height: 50px;
+              width: 50px;
+              line-height: 50px;
+              border: 1px solid $bodyhovercolor;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $medium_iphone) {
+  .header {
+    padding: 15px;
+    .header_inner {
+      .center_part {
+        bottom: -55px;
+        .login_auth_img {
+          img {
+            width: 90px;
+            height: 90px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $medium_phone) {
+  .header {
+    .header_inner {
+      .center_part {
+        .login_auth_img {
+          img {
+            width: 75px;
+            height: 75px;
+          }
+        }
+      }
+      .right_part {
+        .common_content {
+          margin: 0 8px;
+          &.restart_btn {
+            background-color: $white_color;
+            padding: 0;
+            border: none;
+          }
+          &.user {
+            .profile_img {
+              img {
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@import "../../../public/assets/css/variable/variable";
+
+.consult_request {
+  padding: 30px;
+  .primary_btn {
+    .back_to {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  .form_inner {
+    justify-content: space-between;
+    .conslt_item {
+      padding: 0 50px;
+      fieldset {
+        margin: 0 0 15px;
+        legend {
+          font-weight: 600;
+          font-size: $font_large;
+          color: $bodycolor;
+          margin: 0 0 12px;
+        }
+        .form_field_wrapper {
+          margin: 0 0 20px;
+          .max_limit {
+            margin-top: 12px;
+            color: $bodyopacitycolor;
+          }
+        }
+        .advise_price_item {
+          padding: 15px 20px;
+          margin: 0 0 20px;
+          background: #fbfbfb;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          border-radius: 10px;
+          label {
+            font-size: $font_medium;
+            font-weight: 600;
+          }
+          p {
+            margin: 0;
+            padding: 0 30px;
+          }
+          &.active {
+            border-color: #92c9ad;
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        &.advise_fieldset {
+          margin: 0 0 50px;
+        }
+        &.mctype_fieldset {
+          margin: 0 0 50px;
+        }
+      }
+      &.right_part {
+        padding: 0 165px;
+      }
+    }
+    .primary_btn {
+      .btn {
+        min-width: 250px;
+      }
+    }
+  }
+}

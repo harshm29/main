@@ -1,0 +1,16 @@
+@import "../../../../../../public/assets/css/variable/variable";
+
+.footer {
+  text-align: center;
+  padding: 15px;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  // background: $white_color;
+  .copy_right {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: $font_medium;
+    font-weight: 400;
+  }
+}

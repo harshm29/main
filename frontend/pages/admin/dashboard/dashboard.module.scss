@@ -1,0 +1,88 @@
+@import "../../../public//assets/css//variable/variable";
+
+.dashboard {
+  .content_title {
+    font-weight: 700;
+    font-size: $font_ex_large;
+    line-height: 22px;
+    color: $bodycolor;
+    margin: 0 0 15px;
+  }
+  .statistics {
+    margin: 0 0 20px;
+    .item {
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      .icon {
+        border-radius: 50%;
+        width: 70px;
+        min-width: 70px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        margin-right: 15px;
+      }
+      .desc {
+        .counter_no {
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 30px;
+          margin: 0 0 5px;
+        }
+        .counter_title {
+          font-weight: 500;
+          font-size: $font_large;
+          line-height: 24px;
+        }
+      }
+      &.green {
+        background-color: $light_green;
+        .icon {
+          background: $icon_light_green;
+        }
+        .desc {
+          .counter_no {
+            color: $counter_no_green;
+          }
+        }
+      }
+      &.yellow {
+        background-color: $light_yellow;
+        .icon {
+          background: $icon_light_yellow;
+        }
+        .desc {
+          .counter_no {
+            color: $counter_no_yellow;
+          }
+        }
+      }
+    }
+  }
+  .patient_queue {
+    .item {
+      padding: 20px;
+      .item_inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left_part {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .profile_img {
+            margin-right: 15px;
+            img {
+              width: 94px;
+              min-width: 94px;
+              height: 95px;
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

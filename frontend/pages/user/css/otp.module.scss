@@ -1,0 +1,62 @@
+@import "../../../public/assets/css/variable/variable";
+
+.otp {
+  .form_field_wrapper {
+    .formcontrol {
+      text-align: center;
+      width: 97px;
+      height: 76px;
+      margin: 0 auto;
+      padding: 0;
+    }
+  }
+  .timer {
+    margin-top: 25px;
+    font-size: $font_medium;
+    font-weight: 600;
+  }
+  .resend_otp {
+    margin: 20px 0 0 !important;
+    p {
+      color: $bodycolor;
+      font-weight: 500;
+      font-size: $font_medium;
+      span {
+        color: $bodyhovercolor;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $medium_iphone) {
+  .otp {
+    .form_field_wrapper {
+      .formcontrol {
+        width: 75px;
+        height: 75px;
+      }
+    }
+  }
+}
+@media screen and (max-width: $medium_phone) {
+  .otp {
+    .form_field_wrapper {
+      .formcontrol {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+}
+@media screen and (max-width: $small_phone) {
+  .otp {
+    .form_field_wrapper {
+      .formcontrol {
+        width: 55px;
+        height: 55px;
+      }
+    }
+  }
+}

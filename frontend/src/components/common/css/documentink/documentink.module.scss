@@ -1,0 +1,16 @@
+@import "../../../../../public/assets/css/variable/variable";
+
+.document_ink {
+  .documentink_inner {
+    .form_wrapper {
+      width: auto;
+      .document {
+        .doc_icon {
+          width: 450px;
+          height: auto;
+          mix-blend-mode: darken;
+        }
+      }
+    }
+  }
+}

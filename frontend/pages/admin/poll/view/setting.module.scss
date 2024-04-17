@@ -1,0 +1,415 @@
+@import "../../../../public/assets/css/variable/variable";
+
+.setting {
+  text-align: left;
+  .setting_inner {
+    .form_wrapper {
+      width: auto;
+      .main_title {
+        margin: 0 0 15px;
+      }
+      form {
+        .item_wrapper {
+          .item {
+            .card {
+              border: none;
+              box-shadow: 0px 7px 13px rgba(0, 0, 0, 0.05);
+              border-radius: 10px;
+              padding: 12px;
+              margin: 0 0 20px;
+              .top_bar {
+                margin: 0 0 15px;
+                flex-direction: row;
+                .card_title {
+                  font-weight: 700;
+                  font-size: 22px;
+                  line-height: 26px;
+                  color: $bodycolor;
+                  margin: 0;
+                }
+                .btn_add {
+                  padding: 0;
+                  width: 40px;
+                  height: 40px;
+                  line-height: 40px;
+                  background: rgba(152, 172, 162, 0.11);
+                  border-radius: 10px;
+                }
+                .btn_edit {
+                  padding: 0;
+                  width: 40px;
+                  height: 40px;
+                  line-height: 40px;
+                  background: rgba(152, 172, 162, 0.11);
+                  border-radius: 50%;
+                }
+              }
+              .bottom_bar {
+                .btn_delete {
+                  padding: 0;
+                  width: 40px;
+                  height: 40px;
+                  line-height: 40px;
+                  background: $white_color;
+                  border-radius: 10px;
+                }
+              }
+              &.profile_card {
+                .profile_top_bar {
+                  background: rgba(146, 201, 173, 0.13);
+                  border-radius: 10px;
+                  padding: 5px;
+                  text-align: center;
+                  display: block;
+                  .primary_btn {
+                    justify-content: flex-end;
+                    .btn_edit {
+                      width: 40px;
+                      height: 40px;
+                      line-height: 40px;
+                      border-radius: 50%;
+                      background: #ffffff;
+                      border: 3px solid #f1f8f4;
+                      display: inline-flex;
+                      justify-content: center;
+                      align-items: center;
+                    }
+                  }
+                  .profile_img {
+                    .form_field_wrapper {
+                      margin: 0 0 15px;
+                      .form_upload_control {
+                        padding: 0;
+                        border: none;
+                        background-color: transparent;
+                        .file_upload_control {
+                          .file_upload {
+                            margin: 0;
+                            border-radius: 50%;
+                          }
+                          .upload_icon {
+                            background: #00aead;
+                            border: 3px solid #f1f8f4;
+                            width: 43px;
+                            height: 43px;
+                            line-height: 43px;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: -20px;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  .profile_title {
+                    font-weight: 700;
+                    font-size: 22px;
+                    line-height: 30px;
+                    color: $bodycolor;
+                    margin: 0 0 20px;
+                  }
+                }
+                .bottom_bar {
+                  display: block;
+                  ul {
+                    list-style: none;
+                    li {
+                      span {
+                        margin: 0 15px 0 0;
+                        img {
+                          min-width: 17px;
+                        }
+                      }
+                      word-break: break-word;
+                      display: flex;
+                      font-weight: 500;
+                      font-size: 16px;
+                      line-height: 22px;
+                      color: $bodycolor;
+                      margin: 25px 0;
+                    }
+                  }
+                }
+              }
+              &.paymentdetails_card {
+                .bottom_bar {
+                  .payment_item {
+                    background: #f4f6f5;
+                    border-radius: 10px;
+                    padding: 25px 15px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .left_part {
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      .payment_img {
+                        margin: 0 15px 0 0;
+                        img {
+                          min-width: 50px;
+                        }
+                      }
+                      .payment_desc {
+                        * {
+                          font-weight: 500;
+                          font-size: 15px;
+                          line-height: 18px;
+                          color: $bodycolor;
+                          margin: 0 0 5px;
+                        }
+                        .cvv {
+                          color: $bodyopacitycolor;
+                          margin: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &.allergies_card {
+                padding: 12px 18px;
+                .top_bar {
+                  background: #f4f6f5;
+                  border-radius: 10px;
+                  padding: 8px 10px;
+                }
+                .bottom_bar {
+                  ul {
+                    list-style: none;
+                    li {
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      position: relative;
+                      border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+                      padding: 0 0 10px;
+                      margin: 0 0 10px;
+                      &::before {
+                        content: url(../../../../public/assets//img/right_arrow.svg);
+                        display: block;
+                        position: absolute;
+                        left: -30px;
+                        right: auto;
+                        top: 50%;
+                        transform: translateY(-50%);
+                      }
+                      .title {
+                        font-weight: 500;
+                      }
+                      &:last-child {
+                        border-bottom: none;
+                      }
+                    }
+                  }
+                }
+              }
+              &.nric_card {
+                padding: 15px 25px 25px;
+                .top_bar {
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+                  padding: 0 0 15px;
+                  min-height: 56px;
+                }
+                .bottom_bar {
+                  .form_field_wrapper {
+                    margin: 0 0 20px;
+                    .form_upload_control {
+                      border-radius: 11px;
+                      padding: 0;
+                      .file_upload_control {
+                        img {
+                          margin: 0;
+                        }
+                        .btn_change {
+                          position: absolute;
+                          left: 50%;
+                          right: auto;
+                          top: 50%;
+                          bottom: auto;
+                          transform: translate(-50%, -50%);
+                          width: auto;
+                          min-width: 180px;
+                          background: rgba(255, 255, 255, 0.66);
+                          border-color: $bodycolor;
+                          border-radius: 10px;
+                          font-weight: 700;
+                          color: $bodycolor;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &.changepassword_card {
+                .bottom_bar {
+                  .otp_section {
+                    label {
+                      margin: 0 0 12px;
+                    }
+                    .otp_section_inner {
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin: 0 -6px;
+                    }
+                    .form_field_wrapper {
+                      padding: 0 6px;
+                      input {
+                        text-align: center;
+                        padding: 0;
+                        min-height: 50px;
+                        min-width: 50px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $desktop_up) {
+  .setting {
+    text-align: left;
+    .setting_inner {
+      .form_wrapper {
+        width: auto;
+        form {
+          .item_wrapper {
+            .item {
+              &.item1 {
+                width: 30%;
+              }
+              &.item2 {
+                width: 35%;
+              }
+              &.item3 {
+                width: 35%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $desktop) {
+  .setting {
+    .setting_inner {
+      .form_wrapper {
+        .main_title {
+          font-size: 26px;
+        }
+        form {
+          .item_wrapper {
+            .item {
+              .card {
+                .top_bar {
+                  .card_title {
+                    font-size: 20px;
+                    line-height: 22px;
+                  }
+                }
+                &.paymentdetails_card {
+                  .bottom_bar {
+                    .payment_item {
+                      .left_part {
+                        .payment_img {
+                          img {
+                            min-width: 38px;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                &.changepassword_card {
+                  .bottom_bar {
+                    .otp_section {
+                      .form_field_wrapper {
+                        input {
+                          min-width: 40px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $tablet) {
+  .setting {
+    .setting_inner {
+      .form_wrapper {
+        .main_title {
+          font-size: 22px;
+          line-height: 26px;
+        }
+        form {
+          .item_wrapper {
+            .item {
+              .card {
+                .top_bar {
+                  .card_title {
+                    font-size: 18px;
+                    line-height: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $medium_phone) {
+  .setting {
+    .setting_inner {
+      .form_wrapper {
+        form {
+          .item_wrapper {
+            .item {
+              .card {
+                &.profile_card {
+                  .profile_top_bar {
+                    margin: 0 0 10px;
+                    .profile_img {
+                      .form_field_wrapper {
+                        .form_upload_control {
+                          .file_upload_control {
+                            .file_upload {
+                              width: 85px;
+                              height: 85px;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  .bottom_bar {
+                    ul {
+                      padding-left: 0.5rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

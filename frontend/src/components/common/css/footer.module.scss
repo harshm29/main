@@ -1,0 +1,11 @@
+@import "../../../../public/assets/css/variable/variable";
+.footer {
+  text-align: center;
+  padding: 15px;
+
+  .copy_right {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: $font_medium;
+    font-weight: 400;
+  }
+}
