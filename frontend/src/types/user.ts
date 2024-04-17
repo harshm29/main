@@ -8,6 +8,7 @@ export type User = {
   currentPage?: any;
   totalPages?: any;
   nominees?: any;
+  total_votes?: any;
 };
 export type Verified = {
   username?: string;

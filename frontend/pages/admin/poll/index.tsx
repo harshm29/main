@@ -101,7 +101,7 @@ const Poll: MyPage = () => {
             </div>
             <div className="bottom_bar">
               <div className="pb-4">
-                <Link title="Add Doctor" href={"/admin/poll/add"}>
+                <Link title="Add Poll" href={"/admin/poll/add"}>
                   <svg
                     style={{ float: "right" }}
                     width="43"

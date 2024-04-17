@@ -250,6 +250,8 @@ exports.getNomineesChart = async (req, res) => {
 
     const nomineesData = await Promise.all(voteCountPromises);
 
+    const totalVotes = nomineesData.reduce((acc, curr) => acc + curr.votes, 0);
+
     // Generate chart data
     const chartData = {
       labels: nomineesData.map((item) => item.nominee),
@@ -264,7 +266,9 @@ exports.getNomineesChart = async (req, res) => {
       ],
     };
 
-    res.status(200).json({ isSuccess: true, data: chartData });
+    res
+      .status(200)
+      .json({ isSuccess: true, data: chartData, total_votes: totalVotes });
   } catch (err) {
     console.error("Error generating nominees chart data:", err);
     res

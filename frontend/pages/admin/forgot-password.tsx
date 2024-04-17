@@ -40,7 +40,7 @@ const Forgotpassword: MyPage = () => {
               progress: undefined,
               theme: "light",
             });
-            router.push("/user/login");
+            router.push("/admin/login");
           } else {
             toast.info(res.message, {
               position: "top-right",

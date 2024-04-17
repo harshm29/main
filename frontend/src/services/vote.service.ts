@@ -68,6 +68,7 @@ export class VoteService {
             status: res.data.isSuccess,
             message: res.data.message,
             data: res.data.data,
+            total_votes: res.data.total_votes,
           };
         } else {
           return {
