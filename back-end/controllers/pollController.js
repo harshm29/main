@@ -23,10 +23,10 @@ exports.createPoll = async (req, res) => {
     const { question, nominees } = req.body;
 
     // Check if nominees array length is valid
-    if (nominees.length < 2 || nominees.length > 5) {
+    if (nominees.length < 2 || nominees.length > 10) {
       return res.status(200).json({
         isSuccess: false,
-        message: "Nominees count should be between 2 and 5",
+        message: "Nominees count should be between 2 and 10",
       });
     }
 

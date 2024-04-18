@@ -4,10 +4,35 @@ This project is an Online Live Polling System developed using Nodejs + Express.j
 
 ## Features
 
-- **Real-time Polling:** Conduct live polls and gather instant feedback from users.
-- **User-friendly Interface:** Simple and intuitive interface for creating and participating in polls.
-- **Data Visualization:** Visualize poll results with interactive charts and graphs.
-- **Scalable Architecture:** Built using modern technologies for scalability and performance.
+- **Admin Section**:
+
+  - [Admin Login](http://localhost:4000/admin/login): Access the admin dashboard.
+  - **Dashboard**:
+    - Provides charts of votes.
+    - Shows the vote count for each nominee.
+    - Displays a Total Votes chart for the last created poll records.
+    - View old records in Poll Management -> View.
+  - **Poll Management**:
+    - Lists created polls.
+    - Create new polls with a button.
+    - View poll information with charts.
+  - **Profile**:
+    - Check and update admin information.
+  - **Logout**:
+    - Log out from the current session.
+
+- **User Section**:
+  - [User Login](http://localhost:4000/): User login with email and password.
+  - **User Register**:
+    - Register as a new user with email, password, and other information.
+  - **User Forgot Password**:
+    - Reset the password with the email received with the reset link.
+  - **Vote**:
+    - Vote on remaining polls with nominees.
+  - **Profile**:
+    - Check and update user information.
+  - **Logout**:
+    - Log out from the current session.
 
 ## Technologies Used
 

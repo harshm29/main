@@ -41,11 +41,11 @@ const AddPoll: MyPage = () => {
   }, []);
 
   const handleNomineesChange = (newNominees: any) => {
-    if (newNominees.length <= 5) {
+    if (newNominees.length <= 10) {
       setNominees(newNominees);
       setError("");
     } else {
-      setError("Maximum 5 nominees allowed");
+      setError("Maximum 10 nominees allowed");
     }
   };
 
@@ -83,7 +83,7 @@ const AddPoll: MyPage = () => {
   };
 
   const onSubmit = () => {
-    if (nominees.length <= 5) {
+    if (nominees.length <= 10) {
       CreatePoll(values.name, nominees)
         .then((res: any) => {
           toast.error(res.message);
@@ -126,11 +126,11 @@ const AddPoll: MyPage = () => {
               <div className="form_field_wrapper">
                 <TagsInput
                   inputProps={{
-                    placeholder: "Enter nominees (Max 5)",
+                    placeholder: "Enter nominees (Max 10)",
                   }}
                   value={nominees}
                   onChange={handleNomineesChange}
-                  maxTags={5}
+                  maxTags={10}
                 />
                 {error && <div className="error">{error}</div>}
               </div>
