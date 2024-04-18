@@ -1,16 +1,14 @@
 import Image from "next/image";
-
 import style from "../../css/header.module.scss";
-
 import loginauth from "../../../../../public/assets/img/login_auth.png";
-
+import profile from "../../../../../public/assets/img/call/img_avatar.png";
 import menubar from "../../../../../public/assets/img/menu_bar.svg";
 
-import { useLogout } from "../../../../hooks/auth/useLogout";
+import { useCurrentUser } from "../../../../hooks/auth/useCurrentUser";
 
 export default function Header() {
-  const { logout } = useLogout();
-
+  const { user: currentUser } = useCurrentUser();
+  console.log(currentUser?.username);
   return (
     <>
       <main className="main_wrapper">
@@ -40,16 +38,16 @@ export default function Header() {
                   src={loginauth}
                   alt="Login auth"
                   style={{ height: "110px", width: "110px" }}
-                  // width={110}
-                  // height={110}
-                  // priority
+                  width={110}
+                  height={110}
+                  priority
                 />
               </div>
             </div>
             <div className={`right_part ${style.right_part}`}>
               <div style={{ height: "27px" }}></div>
               <div className={`user ${style.user} ${style.common_content}`}>
-                {/* <div
+                <div
                   className={`profile_img ${style.profile_img}`}
                   // id="dropdownMenuButton1"
                   //data-bs-toggle="dropdown"
@@ -57,32 +55,12 @@ export default function Header() {
                 >
                   <Image
                     src={profile}
-                    alt="Profile"
+                    alt={currentUser?.username ? currentUser?.username : ""}
                     width={35}
                     height={35}
                     priority
                   />
-                </div> */}
-
-                {/* <ul
-                  className="profile dropdown-menu"
-                  aria-labelledby="dropdownMenuButton1"
-                >
-                  <li>
-                    <a className="dropdown-item">
-                      <span className="item_text">Profile</span>
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => {
-                        logout();
-                        router.push("/patient/login");
-                      }}
-                    >
-                      <span className="item_text">Logout</span>
-                    </a>
-                  </li>
-                </ul> */}
+                </div>
               </div>
             </div>
           </div>

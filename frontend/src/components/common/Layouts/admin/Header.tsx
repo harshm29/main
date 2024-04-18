@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import style from "../../css/header.module.scss";
-
+import profile from "../../../../../public/assets/img/call/img_avatar.png";
 import menubar from "../../../../../public/assets/img/menu_bar.svg";
 
 import { useLogout } from "../../../../hooks/auth/useLogout";
@@ -38,7 +38,22 @@ export default function Header() {
               <div
                 className={`user ${style.user} ${style.common_content}`}
                 style={{ height: "35px" }}
-              ></div>
+              >
+                <div
+                  className={`profile_img ${style.profile_img}`}
+                  // id="dropdownMenuButton1"
+                  //data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <Image
+                    src={profile}
+                    alt={currentUser?.username ? currentUser?.username : ""}
+                    width={35}
+                    height={35}
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </header>
