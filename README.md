@@ -47,6 +47,8 @@ This project is an Online Live Polling System developed using Nodejs + Express.j
   - Next.js
   - React.js
   - Chart.js
+  - Socket.IO
+  - MUI
 
 ## Installation
 
