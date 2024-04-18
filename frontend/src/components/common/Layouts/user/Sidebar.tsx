@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import style from "../../css/sidebar.module.scss";
-import sidebarlog from "../../../../../public/assets/img/logo.svg";
+import sidebarlog from "../../../../../public/assets/img/logo.png";
 import { useRouter } from "next/router";
 import { useLogout } from "../../../../hooks/auth/useLogout";
 export default function Sidebar() {

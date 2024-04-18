@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import style from "./header.module.scss";
-import headerlogo from "../../../../../../public/assets/img/logo.svg";
+import headerlogo from "../../../../../../public/assets/img/logo.png";
 import loginauth from "../../../../../../public/assets/img/login_auth.png";
 import Link from "next/link";
 const Header = () => {

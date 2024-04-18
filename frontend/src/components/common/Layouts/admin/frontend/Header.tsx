@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import style from "../frontend/header.module.scss";
-import headerlogo from "../../../../../../public/assets/img/logo.svg";
+import headerlogo from "../../../../../../public/assets/img/logo.png";
 import loginauth from "../../../../../../public/assets/img/admin-icon-trendy-design-style-isolated-white-background-vector-simple-modern-flat-symbol-web-site-mobile-logo-app-135742404.jpg";
 import Link from "next/link";
 const Header = () => {
