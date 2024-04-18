@@ -75,7 +75,10 @@ exports.listPolls = async (req, res) => {
     const totalPolls = await Poll.countDocuments();
     const totalPages = Math.ceil(totalPolls / limit);
 
-    const polls = await Poll.find().skip(skip).limit(limit);
+    const polls = await Poll.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     if (polls.length === 0) {
       return res
