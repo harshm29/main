@@ -66,7 +66,7 @@ const Voteresquest: MyPage = () => {
   }, []);
 
   const handleFormat = (event: any, newFormats: any) => {
-    console.log(event.target.value);
+    console.log(event.target, event.target.value);
     setnominee_id(event.target.value);
   };
 
@@ -122,9 +122,7 @@ const Voteresquest: MyPage = () => {
                         value={item._id}
                         aria-label={item._id}
                       >
-                        <div className={`consult_desc ${style.consult_desc}`}>
-                          {item.name}
-                        </div>
+                        {item.name}
                       </ToggleButton>
                     ))}
                   </ToggleButtonGroup>
