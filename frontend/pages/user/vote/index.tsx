@@ -12,6 +12,7 @@ import Modal from "@mui/material/Modal";
 import { showToast } from "../../../src/utils/comman";
 import { useGetpoll, useCreateVote } from "../../../src/hooks/vote/useVote";
 
+import CircularProgress from "@mui/material/CircularProgress";
 const Voteresquest: MyPage = () => {
   const [formats, setFormats] = React.useState<any>(() => []);
   const [others, setOthers] = React.useState(null);
@@ -96,14 +97,37 @@ const Voteresquest: MyPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main_wrapper">
-        <div className={`userauth ${style.consult_request}`}>
+        <div className={`userauth consultnine ${style.consult_request}`}>
+          {!isData && (
+            <div className="userauth_inner">
+              <h1 className="auth_title">
+                <span> Thank you for visiting us.</span>
+              </h1>
+
+              <div className={`form_wrapper ${style.form_wrapp}`}>
+                <form>
+                  <fieldset>
+                    <div className="form_field_wrapper">
+                      <label
+                        className={`${style.custom_label_text}`}
+                        htmlFor="matching"
+                      >
+                        We are matching you to any available poll now.
+                      </label>
+                      <br />
+                      <CircularProgress disableShrink />
+                    </div>
+
+                    <div className="primary_btn"></div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          )}
+
           <div className={`userauth_inner ${style.userauth_inner}`}>
             <h1 className={`auth_title ${style.auth_title}`}>
-              <span>
-                {isData
-                  ? Data?.poll?.question
-                  : "Thank you for visiting us currently not available any election!!"}{" "}
-              </span>
+              <span>{isData ? Data?.poll?.question : ""} </span>
             </h1>
             {isData && (
               <div className={`form_wrapper ${style.form_wrapper}`}>
