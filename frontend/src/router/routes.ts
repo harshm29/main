@@ -1,10 +1,12 @@
 export const protectedRoutes = [
   "/user/dashboard",
   "/user/vote",
+  "/user/profile",
 
   //admin
   "/admin/dashboard",
   "/admin/poll",
+  "/admin/profile",
 ];
 export const authRoutes = ["/user/login", "/admin/login"];
 export const publicRoutes = [
@@ -16,5 +18,5 @@ export const publicRoutes = [
   "/",
 
   "/admin/login",
-  "/admin/forgotpassword",
+  "/admin/forgot-password",
 ];

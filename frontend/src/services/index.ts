@@ -1,5 +1,5 @@
 import { AuthService } from "./auth.service";
-import { AdminService } from "./admin.service";
+
 import { VoteService } from "./vote.service";
 import { PollService } from "./poll.service";
 
@@ -11,7 +11,7 @@ export const authService = new AuthService(APIURL);
 
 export const authResendService = new AuthService(APIURL);
 //
-export const adminService = new AdminService(APIURL);
+
 // register
 export const authRegisterService = new AuthService(APIURL);
 

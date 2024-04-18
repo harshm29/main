@@ -108,58 +108,42 @@ const AddPoll: MyPage = () => {
     <div className="userauth signup">
       <div className="userauth_inner">
         <h1 className="auth_title">
-          You need to create new poll so
-          <br />
-          <span>Give details please?</span>
+          You need to create a new poll. <br />
+          <span>Please provide the details:</span>
         </h1>
         <div className="form_wrapper">
           <form>
             <fieldset>
               <div className="form_field_wrapper">
-                <Image
-                  className="field_icon"
-                  src={profile}
-                  alt="Profile"
-                  width={16}
-                  height={20}
-                  priority
-                />
-                <input
-                  type="text"
-                  placeholder="question"
+                <textarea
+                  placeholder="Enter your question"
                   value={values.name}
-                  className="form-control field_with_icon"
+                  className="form-control textarea_field"
                   name="name"
                   onChange={handleChange}
                 />
-                {errors?.name && <div className="error">{errors?.name}</div>}
               </div>
-
               <div className="form_field_wrapper">
                 <TagsInput
                   inputProps={{
-                    className: "react-tagsinput-input",
-                    classNameRemove: "react-tagsinput-remove",
-                    placeholder: "Nominees",
-                    maxTags: 5,
+                    placeholder: "Enter nominees (Max 5)",
                   }}
                   value={nominees}
                   onChange={handleNomineesChange}
-                  style={{ with: "100%" }}
+                  maxTags={5}
                 />
                 {error && <div className="error">{error}</div>}
               </div>
             </fieldset>
           </form>
         </div>
-
         <button
           type="submit"
           className="btn btn-primary"
           onClick={onSubmit}
           disabled={isButtonDisabled}
         >
-          Send
+          Save
         </button>
         <span style={{ margin: "0 45px" }}></span>
         <Link href="/admin/poll">

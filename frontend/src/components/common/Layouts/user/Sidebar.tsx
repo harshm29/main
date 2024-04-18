@@ -57,12 +57,12 @@ export default function Sidebar() {
                       </Link>
                     </li>
 
-                    {/* <li className="nav-item">
+                    <li className="nav-item" title="My profile">
                       <Link
                         className={`menu_list_block ${style.menu_list_block} ${
-                          router.pathname == "/user/setting" ? style.active : ""
+                          router.pathname == "/user/profile" ? style.active : ""
                         }`}
-                        href="/user/setting"
+                        href="/user/profile"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +80,9 @@ export default function Sidebar() {
                           </g>
                         </svg>
                       </Link>
-                    </li> */}
+                    </li>
 
-                    <li className="nav-item">
+                    <li className="nav-item" title="Logout">
                       <button
                         className={`menu_list_block ${style.menu_list_block}`}
                         onClick={() => {

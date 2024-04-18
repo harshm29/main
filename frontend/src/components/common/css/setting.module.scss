@@ -310,13 +310,15 @@
           .item_wrapper {
             .item {
               &.item1 {
-                width: 30%;
+                width: 100%;
+                text-align: center;
+                margin: auto;
               }
               &.item2 {
-                width: 35%;
+                width: 50%;
               }
               &.item3 {
-                width: 35%;
+                width: 50%;
               }
             }
           }
