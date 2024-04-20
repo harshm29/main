@@ -1,50 +1,47 @@
 import Head from "next/head";
 import Image from "next/image";
+import Header from "../../src/components/common/Layouts/frontend/user/Header";
+import Footer from "../../src/components/common/Layouts/frontend/user/Footer";
+import { MyPage } from "../../src/components/common/types";
 import email_img from "../../public/assets/img/email.svg";
 import password_img from "../../public/assets/img/password.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import { toast } from "react-toastify";
-
-import { MyPage } from "../../src/components/common/types";
 import { useLogin } from "../../src/hooks/auth/useLogin";
-
 import { useForm } from "react-hook-form";
-
-import Header from "../../src/components/common/Layouts/frontend/user/Header";
-import Footer from "../../src/components/common/Layouts/frontend/user/Footer";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 const Login: MyPage = () => {
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Email is required"),
+
+    password: yup
+      .string()
+      .required("Password is required")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Password must be 8 characters long and contain letters, numbers, and special characters"
+      ),
+  });
   const {
     register,
     handleSubmit,
-    submit,
+
     formState: { errors },
-  }: any = useForm();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userid, setUserid] = useState("");
-
-  const [userDetails, setUserDetails] = useState<any>({});
+  }: any = useForm({ resolver: yupResolver(schema) });
 
   const { login } = useLogin();
 
   const router = useRouter();
-  const [userErrors, setUserErrors] = useState<any>({
-    email: [""],
-    password: [""],
-  });
-  const onSubmit = (e: any) => {
-    login(email, password, "admin")
+
+  const onSubmit = (data: any) => {
+    login(data.email, data.password, "admin")
       .then((res: any) => {
-        console.log(res, "res");
-        setUserErrors({
-          ...userErrors,
-          email: res?.message?.email || "",
-          password: res?.message?.password || "",
-        });
         if (res.status) {
           toast.success(res.message, {
             position: "top-right",
@@ -88,8 +85,7 @@ const Login: MyPage = () => {
     <>
       <Head>
         <title>Admin Login</title>
-
-        <meta name="description" content="Login of the system" />
+        <meta name="description" content="Admin Login of the system" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -100,7 +96,6 @@ const Login: MyPage = () => {
         <div className="userauth">
           <div className="userauth_inner">
             <h1 className="auth_title">
-              {/* Could you help me <span>login please?</span> */}
               Welcome <span>Back</span>
             </h1>
             <div className="form_wrapper">
@@ -120,34 +115,24 @@ const Login: MyPage = () => {
                       <input
                         type="email"
                         placeholder="Email"
-                        // {...register("email", {
-                        //   required: "Email is required",
-                        //   pattern: {
-                        //     value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                        //     message: "Please enter a valid email",
-                        //   },
-                        // })}
-                        defaultValue={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                          setUserErrors({
-                            ...userErrors,
-                            email: [""],
-                          });
-                        }}
+                        {...register("email", {
+                          required: "Email is required",
+                          pattern: {
+                            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
+                            message: "Please enter a valid email aadress",
+                          },
+                        })}
                         className={`form-control field_with_icon ${
-                          userErrors?.email?.[0] !== ""
-                            ? "border border-danger"
-                            : ""
+                          errors?.email?.message ? "border border-danger" : ""
                         }`}
                         required
                       />
-                      {userErrors?.email?.[0] !== "" ? (
+                      {errors?.email?.message ? (
                         <div
                           className="text-danger pb-2"
                           style={{ float: "left" }}
                         >
-                          {userErrors?.email?.[0]}
+                          {errors?.email?.message}
                         </div>
                       ) : (
                         ""
@@ -166,33 +151,22 @@ const Login: MyPage = () => {
                       <input
                         type="password"
                         placeholder="Password"
-                        // {...register("password", {
-                        //   required: "Password is required",
-                        // })}
-                        defaultValue={password}
-                        // {...register("password", {
-                        //   required: "Password is required",
-                        // })}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                          setUserErrors({
-                            ...userErrors,
-                            password: [""],
-                          });
-                        }}
+                        {...register("password", {
+                          required: "Password is required",
+                        })}
                         className={`form-control field_with_icon ${
-                          userErrors?.password?.[0] !== ""
+                          errors?.password?.message
                             ? "border border-danger"
                             : ""
                         }`}
                         required
                       />
-                      {userErrors?.password?.[0] !== "" ? (
+                      {errors?.password?.message ? (
                         <div
                           className="text-danger pb-2"
                           style={{ float: "left" }}
                         >
-                          {userErrors?.password?.[0]}
+                          {errors?.password?.message}
                         </div>
                       ) : (
                         ""
@@ -200,7 +174,7 @@ const Login: MyPage = () => {
                     </div>
 
                     <div className="form_field_wrapper forgotpass">
-                      <Link className="ato" href="/user/forgot-password">
+                      <Link className="ato" href="/admin/forgot-password">
                         Forgot password?
                       </Link>
                     </div>

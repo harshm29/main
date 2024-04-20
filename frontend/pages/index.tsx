@@ -1,10 +1,10 @@
 import Head from "next/head";
+import Header from "../src/components/common/Layouts/frontend/user/Header";
+import Footer from "../src/components/common/Layouts/frontend/user/Footer";
 import styles from "../styles/Home.module.css";
 import { MyPage } from "../src/components/common/types";
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
-import Header from "../src/components/common/Layouts/frontend/user/Header";
-import Footer from "../src/components/common/Layouts/frontend/user/Footer";
 
 const Home: MyPage = () => {
   const router = useRouter();
@@ -36,9 +36,9 @@ const Home: MyPage = () => {
         <div className="userauth">
           <div className="userauth_inner">
             <h1 className="auth_title">
-              Hey! <span>I'm Karen.</span>
+              Hey! <span>I'm Kaushalya.</span>
               <br />
-              Do you already have an OLPS Account?
+              Do you already have an voting Account?
             </h1>
             <div className="form_wrapper">
               <form noValidate>
@@ -94,5 +94,4 @@ const Home: MyPage = () => {
 };
 
 export default Home;
-
 Home.Layout = "front";

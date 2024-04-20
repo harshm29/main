@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import email_img from "../../public/assets/img/email.svg";
 import Link from "next/link";
-import { useState } from "react";
 
 import { MyPage } from "../../src/components/common/types";
 import { useForgotpwd } from "../../src/hooks/auth/useLogin";
@@ -13,8 +12,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 const Forgotpassword: MyPage = () => {
   const router: any = useRouter();
-  const [email, setEmail] = useState("");
-  const { forgotpwd } = useForgotpwd();
+
+  const { forgotpwd }: any = useForgotpwd();
 
   const {
     register,
@@ -22,14 +21,13 @@ const Forgotpassword: MyPage = () => {
     formState: { errors },
   }: any = useForm();
 
-  const onSubmit = (e: any) => {
-    const { email } = e;
+  const onSubmit = (data: any) => {
+    const { email } = data;
 
-    forgotpwd(email, "user")
+    forgotpwd(email, "admin")
       .then((res: any) => {
         if (res.status) {
           if (res.status) {
-            setEmail("");
             toast.success(res.message, {
               position: "top-right",
               autoClose: 8000,
@@ -66,8 +64,8 @@ const Forgotpassword: MyPage = () => {
           });
         }
       })
-      .catch((e) =>
-        toast.error(e, {
+      .catch((error: any) =>
+        toast.error(error.message, {
           position: "top-right",
           autoClose: 8000,
           hideProgressBar: false,
@@ -83,7 +81,7 @@ const Forgotpassword: MyPage = () => {
   return (
     <>
       <Head>
-        <title>Admin Forgot password</title>
+        <title>Forgot password</title>
         <meta name="description" content="Forgot your password of the system" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -94,7 +92,6 @@ const Forgotpassword: MyPage = () => {
         <div className="userauth">
           <div className="userauth_inner">
             <h1 className="auth_title">
-              {/* Forgot your <strong>Password ?</strong> */}
               Reset Password via <strong>Email?</strong>
             </h1>
             <div className="form_wrapper">
@@ -112,8 +109,6 @@ const Forgotpassword: MyPage = () => {
                     <input
                       type="email"
                       placeholder="Email"
-                      defaultValue={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       className={`form-control field_with_icon ${
                         errors?.email?.message ? "border border-danger" : ""
                       }`}
@@ -142,8 +137,8 @@ const Forgotpassword: MyPage = () => {
                     Send Email
                   </button>
                   <div className="form_field_wrapper mt-2 ">
-                    <Link className="ato" href="/">
-                      Back to Home page?
+                    <Link className="ato" href="/admin/login">
+                      Back to Login page?
                     </Link>
                   </div>
                 </fieldset>

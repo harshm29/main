@@ -1,178 +1,134 @@
+import Header from "../../src/components/common/Layouts/frontend/user/Header";
+import Footer from "../../src/components/common/Layouts/frontend/user/Footer";
+import style from "../user/css/signup.module.scss";
+import { MyPage } from "../../src/components/common/types";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "react-toastify";
 
 import profile from "../../public/assets/img/profile.svg";
 import email from "../../public/assets/img/email.svg";
 import phone from "../../public/assets/img/phone.svg";
 import password from "../../public/assets/img/password.svg";
 import calendar from "../../public/assets/img/calendar.svg";
-import style from "../user/css/signup.module.scss";
 import { useCheckEmail, useRegister } from "../../src/hooks/auth/useRegister";
-import { useCurrentUser } from "../../src/hooks/auth/useCurrentUser";
-import moment from "moment";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import Header from "../../src/components/common/Layouts/frontend/user/Header";
-import Footer from "../../src/components/common/Layouts/frontend/user/Footer";
-import { toast } from "react-toastify";
-import { showToast, validatePhoneNumber } from "../../src/utils/comman";
 
-const SignUp = () => {
+const SignUp: MyPage = () => {
   const router = useRouter();
-  const { user: currentUser } = useCurrentUser();
   const { checkEmail } = useCheckEmail();
   const { userRegister } = useRegister();
+
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Name is required")
+      .min(2, "Name must be at least 2 characters")
+      .max(100, "Name cannot exceed 100 characters")
+      .matches(/^[a-zA-Z\s]+$/, "Please enter a valid Name"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Email is required")
+      .test("check-email", "Email already exists", async function (value) {
+        if (!value) return true; // Skip if value is empty
+        try {
+          const emailExists = await checkEmail(value);
+
+          if (emailExists.status) {
+            return false; // Return true if email doesn't exist
+          } else {
+            return true; // Return true if email doesn't exist
+          }
+        } catch (error: any) {
+          return false; // Assume email exists if API call fails
+        }
+      }),
+    mobile: yup
+      .string()
+      .matches(/^91\d{10}$/, "Please enter a valid mobile number")
+      .required("Mobile number is required"),
+    voter_id: yup.string().required("Voter ID is required"),
+    dob: yup
+      .date()
+      .required("Date of Birth is required")
+      .test("is-adult", "You must be at least 18 years old", (value) => {
+        const cutoffDate = new Date();
+        cutoffDate.setFullYear(cutoffDate.getFullYear() - 18);
+        return new Date(value) <= cutoffDate;
+      }),
+    gender: yup.string().required("Gender is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Password must be 8 characters long and contain letters, numbers, and special characters"
+      ),
+    confim_password: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  }: any = useForm();
-
-  const [inputData, setInputData] = useState<any>({
-    name: "",
-    type: "user",
-    email: "",
-    mobile: "",
-    dob: "",
-    password: "",
-    gender: "",
-    confim_password: "",
+  } = useForm({
+    resolver: yupResolver(schema),
   });
-  const [emailExist, setEmailExist] = useState(false);
 
-  //  *************** Register handler ****************************
   const handleRegister = async (data: any) => {
-    console.log(inputData.dob !== "Invalid date" && inputData.dob !== "");
-    if (inputData.dob !== "Invalid date" && inputData.dob !== "") {
-      checkEmailDuplicacy(data);
-    } else {
-      toast.error("Please select DOB!!", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  };
+    const userData = { ...data, type: "user" };
 
-  const checkEmailDuplicacy = (email: any) => {
-    checkEmail(email?.email).then((res: any) => {
-      if (res?.status) {
-        setEmailExist(true);
-        toast(res?.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        console.log("Passed !", res.data);
-      } else {
-        let messageData = Object.keys(res?.message);
-        console.log(
-          "res?.message ::::::::::",
-          messageData?.length,
-          Object.keys(res?.message)
-        );
-
-        const { type, dob } = inputData;
-        const payloadData = {
-          ...email,
-          dob: dob,
-          type: type,
-        };
-
-        if (dob !== "Invalid date" || dob !== "") {
-          userRegister(payloadData).then((res) => {
-            if (res?.status) {
-              toast.success(res?.message, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-              router.push("/user/login");
-            } else {
-              toast.error(res?.message, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            }
+    userRegister(userData)
+      .then((res) => {
+        if (res?.status) {
+          toast.success(res?.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
           });
+
+          router.push("/user/login");
         } else {
-          showToast("Date of birth is required");
+          toast.error(res?.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
-      }
-    });
-  };
-
-  const validatePassword = (value: any) => {
-    if (
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-        value
-      )
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const inputChangeHandler = (e: any) => {
-    const { name, value } = e.target;
-
-    if (name === "mobile") {
-      setInputData((prevInputData: any) => ({
-        ...prevInputData,
-        [name]: `+${value}`, // Prepend the "+" symbol
-      }));
-    } else {
-      setInputData((prevInputData: any) => ({
-        ...prevInputData,
-        [name]: value,
-      }));
-    }
-  };
-
-  // ************** Date handler **********************************
-  const dateChangeHandler = (e: any) => {
-    const dobInput = moment(e).format("YYYY-MM-DD");
-
-    setInputData({
-      ...inputData,
-      dob: dobInput,
-    });
+      })
+      .catch((error: any) => {
+        console.error("Error:", error);
+        toast.error(error.message);
+      });
   };
 
   return (
     <>
       <Head>
         <title>Sign up</title>
-        <meta name="description" content="Generated by create next app" />
+        <meta
+          name="description"
+          content="Sign up to participate in the upcoming election voting process. Ensure your voice is heard and contribute to shaping the future. Register now to make a difference!"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -200,7 +156,6 @@ const SignUp = () => {
                       type="text"
                       placeholder="Name "
                       id="name"
-                      onChange={inputChangeHandler}
                       {...register("name", {
                         required: "Name is required",
                         minLength: {
@@ -243,13 +198,20 @@ const SignUp = () => {
                     />
                     <input
                       type="email"
-                      onChange={inputChangeHandler}
                       placeholder="Email"
                       {...register("email", {
                         required: "Email is required",
                         pattern: {
                           value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
                           message: "Please enter a valid email aadress",
+                        },
+                        validate: (value: any) => {
+                          console.log(value);
+                          // Custom validation logic here
+                          if (value.trim() === "" || emailExist) {
+                            return true; // Skip validation
+                          }
+                          return checkEmail(value); // Check email existence
                         },
                       })}
                       className={`form-control field_with_icon ${
@@ -280,7 +242,6 @@ const SignUp = () => {
                     <input
                       type="text"
                       placeholder="91XXXXXXXX"
-                      onChange={inputChangeHandler}
                       maxLength={12}
                       {...register("mobile", {
                         required: {
@@ -330,46 +291,64 @@ const SignUp = () => {
                       type="text"
                       placeholder="VoterID "
                       id="VoterID"
-                      {...register("voterid", {
+                      {...register("voter_id", {
                         required: "VoterID is required",
                       })}
                       className={`form-control field_with_icon ${
-                        errors?.voterid?.message ? "border border-danger" : ""
+                        errors?.voter_id?.message ? "border border-danger" : ""
                       }`}
                     />
-                    {errors?.voterid?.message ? (
+                    {errors?.voter_id?.message ? (
                       <div
                         className="text-danger pb-2"
                         style={{ float: "left" }}
                       >
-                        {errors?.voterid?.message}
+                        {errors?.voter_id?.message}
                       </div>
                     ) : (
                       ""
                     )}
                   </div>
 
-                  <div className="form_field_wrapper date_picker">
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <Image
-                        className="field_icon"
-                        src={calendar}
-                        alt="Calendar"
-                        width={18}
-                        height={20}
-                        priority
-                      />
-                      <DatePicker
-                        onChange={dateChangeHandler}
-                        disableFuture={true}
-                        format="DD-MM-YYYY"
-                      />
-                    </LocalizationProvider>
-                  </div>
-
-                  <div className="form_field_wrapper password">
+                  <div className="form_field_wrapper">
                     <Image
                       className="field_icon"
+                      src={calendar}
+                      alt="DOB"
+                      width={16}
+                      height={20}
+                      priority
+                    />
+                    <input
+                      type="date"
+                      placeholder="DOB"
+                      id="DOB"
+                      {...register("dob", {
+                        required: "DOB is required",
+                      })}
+                      className={`form-control field_with_icon ${
+                        errors?.dob?.message ? "border border-danger" : ""
+                      }`}
+                    />
+                    {errors?.dob?.message ? (
+                      <div
+                        className="text-danger pb-2"
+                        style={{ float: "left" }}
+                      >
+                        {errors?.dob?.message}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  <div className="form_field_wrapper ">
+                    <Image
+                      className={`${
+                        errors?.gender?.message
+                          ? "field_icon_fspace"
+                          : "field_icon"
+                      }`}
                       src={profile}
                       alt="Calendar"
                       width={18}
@@ -377,8 +356,6 @@ const SignUp = () => {
                       priority
                     />
                     <select
-                      name="gender"
-                      onChange={inputChangeHandler}
                       id="gender-select"
                       className={`form-control field_with_icon ${
                         errors?.gender?.message ? "border border-danger" : ""
@@ -420,8 +397,6 @@ const SignUp = () => {
                     <input
                       type="password"
                       placeholder="Password"
-                      name="password"
-                      onChange={inputChangeHandler}
                       {...register("password", {
                         required: "Password is required",
                         validate: (value: any) =>
@@ -460,7 +435,6 @@ const SignUp = () => {
                     />
                     <input
                       type="password"
-                      name="confim_password"
                       placeholder="Confirm Password"
                       {...register("confim_password", {
                         required: "Confirm Password is required",
@@ -505,7 +479,7 @@ const SignUp = () => {
                   </div>
 
                   <button type="submit" className="btn btn-primary">
-                    Next
+                    Save
                   </button>
                   <div className="form_field_wrapper mt-2 ">
                     <Link className="ato" href="/">

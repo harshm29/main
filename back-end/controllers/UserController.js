@@ -21,73 +21,59 @@ const OTP = require("../models/OTP");
 exports.Registration = async (req, res) => {
   try {
     const userInfo = req.body;
-    console.log(userInfo);
+
     let rules = {
-      type: "required",
       name: "required",
       email: "required|email",
-      mobile: "required|min:8|max:15",
+      mobile: "required|min:10|max:12",
       dob: "required",
-      password: "required",
       gender: "required",
-      voterid: "required",
+      password: "required",
+      voter_id: "required",
     };
 
     let validation = new Validator(userInfo, rules);
 
-    const isValid = validation.passes();
-
-    if (!isValid) {
+    if (validation.fails()) {
       res.status(400).send({
         isSuccess: false,
         message: validation.errors.errors,
       });
     } else {
-      let isMatch = await User.findOne({
-        email: userInfo.email,
-      });
+      // Check if email is already registered
+      let isMatch = await User.findOne({ email: userInfo.email });
 
-      if (isMatch !== null) {
+      if (isMatch) {
         res.status(400).send({
           isSuccess: false,
           message: "Your Email is already registered.",
         });
       } else {
         // Generate hash password
-        let hashPassword = null;
+        let hashPassword = await bcrypt.hash(userInfo.password, 10);
 
-        if (userInfo.password) {
-          hashPassword = await bcrypt.hashSync(userInfo.password, 10);
-        }
-
-        let dobDate = null;
-        if (userInfo.dob) {
-          dobDate = moment(userInfo.dob, "DD-MM-YYYY").toDate(); // Assuming dob format is 'DD-MM-YYYY'
-        }
-
-        // Convert dobDate to IST
-        let dobIST = null;
-        if (dobDate) {
-          dobIST = moment.tz(dobDate, "Asia/Kolkata");
-        }
+        // Convert dob to IST
+        let dobIST = moment.tz(userInfo.dob, "DD-MM-YYYY", "Asia/Kolkata");
 
         const data = {
-          type: userInfo.type,
-          name: userInfo.name ? userInfo.name : null,
+          name: userInfo.name,
           email: userInfo.email,
-          mobile: userInfo.mobile ? userInfo.mobile : null,
-          dob: dobIST ? dobIST : null,
+          mobile: userInfo.mobile,
+          dob: dobIST.toDate(),
           gender: userInfo.gender,
           password: hashPassword,
+          voter_id: userInfo.voter_id,
         };
 
         const userInsertResponse = await User.create(data);
+
+        const { password, ...userDetails } = userInsertResponse.toObject();
 
         if (userInsertResponse) {
           res.status(200).send({
             isSuccess: true,
             message: "User registered successfully.",
-            data: userInsertResponse,
+            data: userDetails,
           });
         } else {
           res.status(500).send({
@@ -99,6 +85,7 @@ exports.Registration = async (req, res) => {
       }
     }
   } catch (err) {
+    console.error(err);
     res.status(500).send({
       isSuccess: false,
       message: "Internal server error.",
@@ -524,10 +511,11 @@ exports.Getuser = async (req, res, next) => {
     });
 
     if (isMatch) {
+      const { password, ...userDetails } = isMatch.toObject();
       return res.send({
         isSuccess: true,
         message: "User info found Successfully!!",
-        data: isMatch,
+        data: userDetails,
       });
     } else {
       return res.send({
