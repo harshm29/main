@@ -33,31 +33,43 @@ const Dashboard: MyPage = () => {
     getData();
   }, []);
   useEffect(() => {
-    if (chartData) {
-      const ctx = chartRef.current.getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: chartData,
-        options: {
-          plugins: {
-            title: {
-              display: true,
-              text: `Total Votes: ${Total}`, // Add the total votes label here
-              font: {
-                size: 16,
-                weight: "bold",
+      if (chartRef && chartRef.current) {
+        const ctx = chartRef.current.getContext('2d');
+        const chart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: `Total Votes: ${Total}`,
+                font: {
+                  size: chartData.labels.length > 10 ? 14 : 16, // Adjust font size based on data length
+                  weight: 'bold',
+                },
+                padding: {
+                  top: 10,
+                  bottom: 20,
+                },
               },
-              padding: {
-                top: 10,
-                bottom: 20,
+            },
+            indexAxis: 'y',
+            scales: {
+              y: {
+                ticks: {
+                  font: {
+                    size: chartData.labels.length > 10 ? 10 : 12, // Adjust tick font size based on data length
+                  },
+                },
               },
             },
           },
-          indexAxis: "y",
-        },
-      });
-    }
-  }, [chartData]);
+        });
+        return () => {
+          chart.destroy(); // Clean up chart instance on component unmount
+        };
+      }
+    }, [chartData, Total]);
   useEffect(() => {
     socket.on("newVote", (data: any) => {
       getData();

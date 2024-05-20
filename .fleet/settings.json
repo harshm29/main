@@ -1,0 +1,5 @@
+{
+    "toolchains": ["nextjs", "typescipt"],
+    "nodejs.typescript.rebuildOnChanges": true,
+    "nodejs.typescript.node.options": ""
+}
